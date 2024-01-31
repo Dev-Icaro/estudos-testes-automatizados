@@ -1,0 +1,21 @@
+{
+  "name": "aula01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand --injectGlobals false test/",
+    "test:dev": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand --watchAll --injectGlobals false test/",
+    "test:debug": "node --experimental-vm-modules --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watchAll --injectGlobals false ./test/"
+  },
+  "keywords": [],
+  "author": "icarokiiler",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "v19.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

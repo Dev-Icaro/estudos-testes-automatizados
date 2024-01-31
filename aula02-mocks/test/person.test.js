@@ -11,6 +11,7 @@ describe('#Person Suite', () => {
       };
       expect(() => Person.validate(mockInvalidPerson)).toThrow(new Error('name is required'));
     });
+
     it('should throw if the cpf is not present', () => {
       // mock é a entrada necessaria para que o teste funcione
       const mockInvalidPerson = {
@@ -19,6 +20,7 @@ describe('#Person Suite', () => {
       };
       expect(() => Person.validate(mockInvalidPerson)).toThrow(new Error('cpf is required'));
     });
+
     it('should not throw person is valid', () => {
       // mock é a entrada necessaria para que o teste funcione
       const mockInvalidPerson = {
@@ -28,6 +30,7 @@ describe('#Person Suite', () => {
       expect(() => Person.validate(mockInvalidPerson)).not.toThrow();
     });
   });
+
   describe('#format', () => {
     // parte do principio que os dados ja foram validados!
     it('should format the person name and CPF', () => {
@@ -48,6 +51,49 @@ describe('#Person Suite', () => {
       expect(formattedPerson).toStrictEqual(expected);
     });
   });
+
+  describe('#save', () => {
+    it('should throw if name is not present', () => {
+      const mockedPerson = {
+        name: '',
+        cpf: '000.999.444-11',
+        lastName: 'da Silva',
+      };
+
+      expect(() => Person.save(mockedPerson)).toThrowError();
+    });
+
+    it('should throw if cpf is not present', () => {
+      const mockedPerson = {
+        name: 'Xuxa da Silva',
+        cpf: '',
+        lastName: 'da Silva',
+      };
+
+      expect(() => Person.save(mockedPerson)).toThrowError();
+    });
+
+    it('should throw if lastName is not present', () => {
+      const mockedPerson = {
+        name: 'Xuxa da Silva',
+        cpf: '000.999.444-11',
+        lastName: '',
+      };
+
+      expect(() => Person.save(mockedPerson)).toThrowError();
+    });
+
+    it('should not throw person is valid', () => {
+      const mockedPerson = {
+        name: 'Xuxa da Silva',
+        cpf: '000.999.444-11',
+        lastName: 'da Silva',
+      };
+
+      expect(() => Person.save(mockedPerson)).not.toThrowError();
+    });
+  });
+
   describe('#process', () => {
     it('should process a valid person', () => {
       // Uma outra ideia é não retestar o que já foi testado
